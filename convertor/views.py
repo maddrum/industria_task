@@ -45,6 +45,7 @@ class AddCurrency(LoginRequiredMixin, CreateView):
 
 
 class EditCurrencyListView(LoginRequiredMixin, ListView):
+    """Shows List of All Currencies Added"""
     model = Currencies
     template_name = 'convertor/list_update.html'
 
