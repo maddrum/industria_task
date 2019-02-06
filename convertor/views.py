@@ -19,7 +19,7 @@ class ListCurrencies(ListView):
 
 class ConvertCurrencies(TemplateView):
     """Currency Convertor"""
-    template_name = 'convertor/ajax_convertor.html'
+    template_name = 'convertor/convertor.html'
 
     def get_context_data(self, **kwargs):
         context = super(ConvertCurrencies, self).get_context_data(**kwargs)
