@@ -24,7 +24,7 @@ SECRET_KEY = '-cw9-5(3#dav!)!uf=n#&658k1ym9nvn^b#@mrrzz2utou7d8r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'radarstats.pythonanywhere.com', ]
 
 # Application definition
 
