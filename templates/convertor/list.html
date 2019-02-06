@@ -9,7 +9,7 @@
     <ul>
         {% for currency in currencies_list %}
             <li>
-                1 {{ currency.currency_code }} -> {{ currency.exchange_rate }} BGN
+                {{ currency.units }} {{ currency.currency_code }} -> {{ currency.exchange_rate }} BGN
             </li>
         {% endfor %}
     </ul>
