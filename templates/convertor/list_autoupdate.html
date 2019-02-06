@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block auto_update %}active{% endblock %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Update Successful!</h1>
+
+    <h3>List of BRAND NEW currency exchange rates to BGN</h3>
+    <ul>
+        {% for currency in currencies_list %}
+            <li>
+                {{ currency.units }} {{ currency.currency_code }} -> {{ currency.exchange_rate }} BGN
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

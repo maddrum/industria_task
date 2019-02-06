@@ -2,8 +2,9 @@ from django.views.generic import ListView, CreateView, UpdateView, TemplateView,
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.urls.exceptions import Http404
+from xml_parser import get_currency_values
 from .models import Currencies
-from .forms import CurrencyFormClass, ConvertFormClass
+from .forms import CurrencyFormClass
 
 
 class IndexPage(TemplateView):
@@ -63,3 +64,35 @@ class EditCurrencyUpdateView(LoginRequiredMixin, UpdateView):
         if not self.request.user.is_superuser:
             raise Http404()
         return super(EditCurrencyUpdateView, self).dispatch(request, *args, **kwargs)
+
+
+class AutoUpdateCurrencies(ListView):
+    model = Currencies
+    template_name = 'convertor/list_autoupdate.html'
+
+    def auto_update(self):
+        """Auto updates all currencies"""
+        updated_currencies = get_currency_values()
+        all_objects = Currencies.objects.all()
+        for currency in all_objects:
+            if currency.currency_code == "EUR":
+                currency.units = 1
+                currency.exchange_rate = 1.9558
+                currency.save()
+                continue
+            if currency.currency_code == "BGN":
+                currency.units = 1
+                currency.exchange_rate = 1.00
+                currency.save()
+                continue
+            new_rate = updated_currencies.get(currency.currency_code)
+            if new_rate is not None:
+                currency.exchange_rate = new_rate['rate']
+                currency.units = new_rate['units']
+            currency.save()
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            raise Http404()
+        self.auto_update()
+        return super(AutoUpdateCurrencies, self).dispatch(request, *args, **kwargs)

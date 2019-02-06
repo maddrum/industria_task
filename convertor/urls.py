@@ -7,5 +7,7 @@ urlpatterns = [
     url(r'^create/$', views.AddCurrency.as_view(), name='create_currency'),
     url(r'convert/$', views.ConvertCurrencies.as_view(), name='currency_convertor'),
     url(r'^update-list/$', views.EditCurrencyListView.as_view(), name='update_list'),
+    url(r'auto-update/$', views.AutoUpdateCurrencies.as_view(), name='auto_update'),
     url(r'^update/(?P<pk>\d+)/$', views.EditCurrencyUpdateView.as_view(), name='update_currency'),
+
 ]

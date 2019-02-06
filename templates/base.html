@@ -33,6 +33,10 @@
         <a class="nav-link {% block edit_active %}{% endblock %}" href="{% url 'convertor:update_list' %}">
             Edit Currency
         </a>
+        <a class="nav-link {% block auto_update %}{% endblock %}" href="{% url 'convertor:auto_update' %}">
+            Auto Update
+        </a>
+
     {% endif %}
 </nav>
 <div class="container">
