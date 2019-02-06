@@ -89,6 +89,8 @@ class AutoUpdateCurrencies(ListView):
             if new_rate is not None:
                 currency.exchange_rate = new_rate['rate']
                 currency.units = new_rate['units']
+            else:
+                print(f'Currency named: {currency.currency_code} was not found in BNB site. Ignored!')
             currency.save()
 
     def dispatch(self, request, *args, **kwargs):
